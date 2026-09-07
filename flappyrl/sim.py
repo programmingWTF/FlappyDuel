@@ -95,6 +95,12 @@ class FlappySim:
 
     # ---------------------------------------------------------------- reset
     def reset_all(self) -> np.ndarray:
+        # Shared world: rebuild the pipe field so a restart begins from a clean
+        # scene. (Without this the old pipes stay put and a restarted bird can
+        # spawn inside one.)
+        if self.shared:
+            self._spawn_initial(self.rngs[0], self.pipes)
+            self.terminal_scores[:] = 0
         for i in range(self.n):
             self._reset_env(i)
         return self.states()

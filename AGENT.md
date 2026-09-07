@@ -111,7 +111,11 @@ The agent is **one `RainbowDQN` class** with every component toggled from
       over 30 episodes.
 - [x] `evaluate()` truncation bug fixed — old scores were badly understated.
 - [x] Shared-world (versus) bugs fixed + verified headlessly (`versus_smoke.py`).
-- [ ] Continue training from the best checkpoint to push past ~1000.
+- [x] Collision fairness human-vs-AI **verified** (`test_collision_symmetry.py`).
+- [x] Dead birds greyed out + labelled `OUT` in `versus.py` (a frozen corpse
+      used to stay drawn on top of a pipe and looked like "not dead yet").
+- [ ] **Continue training failed — needs a different approach.** Resuming from
+      `best.pt` for 500k steps *collapsed* the policy (see §4 note below).
 - [ ] Re-check Rainbow with the (now correct) non-truncated eval.
 
 ### Latest greedy evaluations (30 episodes, FIXED cap — trustworthy)
@@ -139,8 +143,72 @@ dense-reward problem.
 > with a per-episode safety cap of `50_000`. **Always compare models using the
 > same, non-truncated eval.**
 
+### ⚠️ Resuming training made it WORSE (don't repeat blindly)
+Continuing from `best.pt` (`--resume`, epsilon restarted at 0.1) for another
+500k steps **destroyed** the policy:
+
+| point | eval mean | eval max |
+|---|---|---|
+| resume start (`best.pt`) | 303.67 | 991 |
+| +100k | 125.60 | 434 |
+| +200k | 4.90 | 9 |
+| +300k | 31.50 | 87 |
+| +400k | 2.10 | 7 |
+| +500k (final) | 3.60 | 25 |
+
+So **`checkpoints/best.pt` is still `baseline_long@975k`**. Training on this
+task is *very* unstable (adjacent evals swing between mean 0 and 125). Before
+training longer, **fix the instability** — lower the LR late in training, keep
+a higher epsilon floor, or select checkpoints by eval — rather than just
+running more steps.
+
+### ⚠️ Continuation training (`baseline_cont`) FAILED — `best.pt` unchanged
+Resuming from `best.pt` (`--resume`, epsilon restarted at 0.1) for another
+500k steps **destroyed** the policy:
+
+| eval point | mean | max |
+|---|---|---|
+| start (`best.pt`) | 303.67 | 991 |
+| +100k | 125.60 | 434 |
+| +200k | 4.90 | 9 |
+| +300k | 31.50 | 87 |
+| +400k | 2.10 | 7 |
+| +500k | 3.60 | 25 |
+
+So **`checkpoints/best.pt` is still `baseline_long@975k`**. Training on this
+task is *very* unstable (adjacent evals swing between mean 0 and 125). The fix
+is to **stabilise** (LR schedule, higher epsilon floor, pick checkpoints by
+eval) — not to simply train longer.
+
+### Collision fairness is verified (human vs AI)
+`test_collision_symmetry.py` proves both birds are judged identically:
+
+| scenario | who dies |
+|---|---|
+| both birds inside pipe body | both |
+| only AI inside pipe body | only AI |
+| only human inside pipe body | only human |
+| both in the middle of the gap | neither |
+| identical policy, shared world | **both on the same step** |
+
+The drawn circle **is** the hitbox: `render.py` draws a circle of
+`bird_radius` at exactly the centre/radius that `_collides()` tests, and the
+drawn pipe rects match the collision rects. So there is no "looks like a hit
+but wasn't" discrepancy — the AI is simply near-optimal and threads gaps with
+a pixel or two of clearance. Dead birds are now greyed out and labelled `OUT`
+in `versus.py`, because a frozen corpse stays drawn on screen until both sides
+are out (the usual source of "the AI clipped a pipe and survived!" confusion).
+
 
 ## 5. Known issues / watch-outs
+
+- **⚠️ Resuming training made the model WORSE (measured).** Continuing from
+  `best.pt` (mean 303.67) with `--resume` + eps 0.1 for 500k more steps
+  collapsed it: eval means went `125.60 → 4.90 → 31.50 → 2.10 → 3.60`.
+  **Do not assume "more steps = better" here — training is unstable.**
+  Before attempting further training, stabilise it (lower LR late, keep a
+  higher epsilon floor, or keep the best-by-eval checkpoint); otherwise a
+  "continuation" run will destroy a good policy and waste an hour.
 
 - **Blackwell torch**: if kernels fail (`sm_120 is not compatible`), the wrong
   torch is installed. Reinstall with `--index-url https://download.pytorch.org/whl/cu128`.
@@ -200,8 +268,10 @@ most finicky** — if full Rainbow still underperforms, drop noisy
    weaker than plain Double+Dueling on this task.
 4. ~~Fix `evaluate()` truncation~~ ✅ done — reported scores are now trustworthy.
 5. ~~Fix + verify shared-world versus mode~~ ✅ done (2 real bugs fixed).
-6. **Continue training from `checkpoints/best.pt`** — needs `--resume` in
-   `train.py`. Goal: push mean past ~300 and max past ~1000.
+6. **Fix training instability, then continue training.** `--resume` is
+   implemented and works, but resuming from `best.pt` *collapsed* the policy
+   (see §4). Stabilise first (LR schedule / epsilon floor / checkpoint
+   selection by eval), then push mean past ~300 and max past ~1000.
 7. **Re-measure Rainbow with the corrected eval** — its numbers came from the
    truncated eval, so re-check before finalizing "baseline wins".
 8. **Demo human-vs-AI** (`versus.py`) with the best model and record
@@ -223,7 +293,9 @@ most finicky** — if full Rainbow still underperforms, drop noisy
 :: 2) re-verify the versus pipeline after ANY change to sim.py
 .\env\python.exe versus_smoke.py
 
-:: 3) play against the model (you = RED, AI = GOLD)
+:: 3) play against the model: two synchronized panels (LEFT = you, RIGHT = AI).
+::    Starts PAUSED — press UP to begin, then UP/SPACE/click to flap.
+::    Runs on CPU by default (--device cuda to use the GPU).
 .\env\python.exe versus.py --model-path checkpoints/best.pt
 
 :: 4) keep optimizing — resume from the best checkpoint
