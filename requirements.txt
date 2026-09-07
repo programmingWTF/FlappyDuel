@@ -1,0 +1,20 @@
+# Flappy Bird RL — Python dependencies
+#
+# IMPORTANT: torch MUST be installed from the PyTorch CUDA index (it carries
+# the GPU kernels). Plain `pip install torch` gives a CPU-only or mismatched
+# build that will NOT run on the RTX 5060 Ti (Blackwell, sm_120).
+#
+# Reproduce with:  setup_env.bat  (Windows)  /  setup_env.sh  (Linux/mac)
+#
+# Or manually:
+#   conda create --prefix ./env python=3.11 -y
+#   ./env/Scripts/activate        (Windows)   |   source ./env/bin/activate  (Linux/mac)
+#   pip install --upgrade pip
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+#   pip install pygame tensorboard
+
+torch
+torchvision
+pygame
+tensorboard
+numpy

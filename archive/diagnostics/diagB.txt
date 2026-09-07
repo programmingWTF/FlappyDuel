@@ -1,0 +1,6 @@
+D:\Code\DQN\flappyrl\agent.py:48: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self.scaler = torch.cuda.amp.GradScaler(enabled=(device.type == "cuda"))
+[diag B_noisy] noisy=True per=False n_step=1 dist=False lr=6.25e-05 device=cuda
+  [B_noisy] step 25000 eval_mean=0.00 max=0 buf=25000
+  [B_noisy] step 50000 eval_mean=0.00 max=0 buf=50000
+[diag B_noisy] FINAL eval_mean=0.00 max=0 (mid-run best seen=0.00)

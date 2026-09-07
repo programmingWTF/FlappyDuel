@@ -1,0 +1,168 @@
+D:\Code\DQN\flappyrl\agent.py:48: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self.scaler = torch.cuda.amp.GradScaler(enabled=(device.type == "cuda"))
+[train] device=cuda  algo=rainbow  n_envs=8
+[train] starting — target 300000 env-steps
+step     2000 | loss None | eps 1.000 | buf    1864 | score50   0.00 (max 0) | 2573.5 st/s
+step     4000 | loss 3.3406 | eps 1.000 | buf    3744 | score50   0.00 (max 0) |  938.3 st/s
+step     6000 | loss 3.2677 | eps 1.000 | buf    5616 | score50   0.00 (max 0) |  803.3 st/s
+step     8000 | loss 3.3076 | eps 1.000 | buf    7494 | score50   0.00 (max 0) |  739.7 st/s
+step    10000 | loss 3.2407 | eps 1.000 | buf    9376 | score50   0.00 (max 0) |  706.2 st/s
+step    12000 | loss 3.4303 | eps 1.000 | buf   11259 | score50   0.00 (max 0) |  678.3 st/s
+step    14000 | loss 3.4727 | eps 1.000 | buf   13138 | score50   0.00 (max 0) |  661.5 st/s
+step    16000 | loss 3.3176 | eps 1.000 | buf   15013 | score50   0.00 (max 0) |  654.0 st/s
+step    18000 | loss 3.3442 | eps 1.000 | buf   16900 | score50   0.00 (max 0) |  644.4 st/s
+step    20000 | loss 3.2092 | eps 1.000 | buf   18780 | score50   0.00 (max 0) |  632.1 st/s
+step    22000 | loss 3.0783 | eps 1.000 | buf   20662 | score50   0.00 (max 0) |  621.0 st/s
+step    24000 | loss 3.0223 | eps 1.000 | buf   22550 | score50   0.00 (max 0) |  613.9 st/s
+  >> EVAL @ 25000: mean=0.00 max=0 (best_mean=0.00)
+step    26000 | loss 3.0495 | eps 1.000 | buf   24433 | score50   0.00 (max 0) |  586.6 st/s
+step    28000 | loss 2.9364 | eps 1.000 | buf   26312 | score50   0.00 (max 0) |  585.6 st/s
+step    30000 | loss 2.8368 | eps 1.000 | buf   28199 | score50   0.00 (max 0) |  585.6 st/s
+step    32000 | loss 2.5364 | eps 1.000 | buf   30080 | score50   0.00 (max 0) |  586.2 st/s
+step    34000 | loss 2.3322 | eps 1.000 | buf   31965 | score50   0.00 (max 0) |  587.4 st/s
+step    36000 | loss 2.3909 | eps 1.000 | buf   33860 | score50   0.00 (max 0) |  587.3 st/s
+step    38000 | loss 1.9695 | eps 1.000 | buf   35748 | score50   0.00 (max 0) |  588.3 st/s
+step    40000 | loss 1.9505 | eps 1.000 | buf   37648 | score50   0.00 (max 0) |  588.7 st/s
+step    42000 | loss 1.8221 | eps 1.000 | buf   39540 | score50   0.00 (max 0) |  588.8 st/s
+step    44000 | loss 1.8057 | eps 1.000 | buf   41456 | score50   0.00 (max 0) |  589.6 st/s
+step    46000 | loss 1.5382 | eps 1.000 | buf   43378 | score50   0.00 (max 0) |  591.0 st/s
+step    48000 | loss 1.6971 | eps 1.000 | buf   45282 | score50   0.00 (max 0) |  591.9 st/s
+step    50000 | loss 1.5818 | eps 1.000 | buf   47170 | score50   0.00 (max 0) |  592.4 st/s
+  >> EVAL @ 50000: mean=0.00 max=0 (best_mean=0.00)
+step    52000 | loss 1.5380 | eps 1.000 | buf   49038 | score50   0.00 (max 0) |  587.9 st/s
+step    54000 | loss 1.8187 | eps 1.000 | buf   50900 | score50   0.00 (max 0) |  588.4 st/s
+step    56000 | loss 1.7511 | eps 1.000 | buf   52782 | score50   0.00 (max 0) |  589.0 st/s
+step    58000 | loss 1.6713 | eps 1.000 | buf   54674 | score50   0.00 (max 0) |  589.4 st/s
+step    60000 | loss 1.8000 | eps 1.000 | buf   56618 | score50   0.00 (max 0) |  588.3 st/s
+step    62000 | loss 1.6429 | eps 1.000 | buf   58582 | score50   0.02 (max 1) |  586.4 st/s
+step    64000 | loss 1.6481 | eps 1.000 | buf   60548 | score50   0.04 (max 1) |  585.6 st/s
+step    66000 | loss 1.8250 | eps 1.000 | buf   62520 | score50   0.12 (max 1) |  585.1 st/s
+step    68000 | loss 1.8413 | eps 1.000 | buf   64492 | score50   0.12 (max 1) |  584.3 st/s
+step    70000 | loss 1.7220 | eps 1.000 | buf   66462 | score50   0.20 (max 1) |  583.9 st/s
+step    72000 | loss 1.6186 | eps 1.000 | buf   68436 | score50   0.16 (max 1) |  583.2 st/s
+step    74000 | loss 1.7186 | eps 1.000 | buf   70410 | score50   0.20 (max 1) |  583.2 st/s
+  >> EVAL @ 75000: mean=0.45 max=1 (best_mean=0.45)
+step    76000 | loss 1.9187 | eps 1.000 | buf   72378 | score50   0.28 (max 2) |  570.1 st/s
+step    78000 | loss 1.7391 | eps 1.000 | buf   74350 | score50   0.26 (max 2) |  570.8 st/s
+step    80000 | loss 1.9268 | eps 1.000 | buf   76322 | score50   0.32 (max 2) |  571.4 st/s
+step    82000 | loss 2.0154 | eps 1.000 | buf   78296 | score50   0.36 (max 2) |  572.7 st/s
+step    84000 | loss 1.7286 | eps 1.000 | buf   80268 | score50   0.40 (max 1) |  573.9 st/s
+step    86000 | loss 1.9135 | eps 1.000 | buf   82242 | score50   0.40 (max 1) |  575.1 st/s
+step    88000 | loss 1.8131 | eps 1.000 | buf   84220 | score50   0.46 (max 2) |  576.2 st/s
+step    90000 | loss 1.8221 | eps 1.000 | buf   86202 | score50   0.50 (max 2) |  577.3 st/s
+step    92000 | loss 2.0599 | eps 1.000 | buf   88178 | score50   0.64 (max 2) |  578.0 st/s
+step    94000 | loss 2.1089 | eps 1.000 | buf   90156 | score50   0.68 (max 2) |  578.2 st/s
+step    96000 | loss 1.9726 | eps 1.000 | buf   92128 | score50   0.62 (max 2) |  578.8 st/s
+step    98000 | loss 1.9020 | eps 1.000 | buf   94112 | score50   0.70 (max 2) |  579.6 st/s
+step   100000 | loss 2.0432 | eps 1.000 | buf   96086 | score50   0.60 (max 3) |  580.3 st/s
+  >> EVAL @ 100000: mean=0.25 max=1 (best_mean=0.45)
+step   102000 | loss 2.0660 | eps 1.000 | buf   98066 | score50   0.68 (max 3) |  567.9 st/s
+step   104000 | loss 1.8765 | eps 1.000 | buf  100044 | score50   0.72 (max 3) |  567.8 st/s
+step   106000 | loss 2.1231 | eps 1.000 | buf  102024 | score50   0.86 (max 3) |  567.1 st/s
+step   108000 | loss 1.8804 | eps 1.000 | buf  104004 | score50   0.86 (max 3) |  566.5 st/s
+step   110000 | loss 1.7434 | eps 1.000 | buf  105978 | score50   0.82 (max 2) |  566.1 st/s
+step   112000 | loss 2.1091 | eps 1.000 | buf  107952 | score50   0.74 (max 2) |  565.2 st/s
+step   114000 | loss 1.8827 | eps 1.000 | buf  109932 | score50   0.64 (max 2) |  565.4 st/s
+step   116000 | loss 1.9784 | eps 1.000 | buf  111908 | score50   0.54 (max 2) |  564.9 st/s
+step   118000 | loss 2.1036 | eps 1.000 | buf  113886 | score50   0.54 (max 1) |  564.2 st/s
+step   120000 | loss 1.8018 | eps 1.000 | buf  115866 | score50   0.64 (max 2) |  563.9 st/s
+step   122000 | loss 2.1492 | eps 1.000 | buf  117844 | score50   0.68 (max 2) |  563.9 st/s
+step   124000 | loss 1.8016 | eps 1.000 | buf  119822 | score50   0.70 (max 2) |  564.1 st/s
+  >> EVAL @ 125000: mean=0.45 max=1 (best_mean=0.45)
+step   126000 | loss 1.8603 | eps 1.000 | buf  121794 | score50   0.72 (max 2) |  556.8 st/s
+step   128000 | loss 2.1475 | eps 1.000 | buf  123772 | score50   0.66 (max 2) |  556.5 st/s
+step   130000 | loss 1.8296 | eps 1.000 | buf  125754 | score50   0.60 (max 2) |  555.5 st/s
+step   132000 | loss 2.1536 | eps 1.000 | buf  127734 | score50   0.62 (max 2) |  555.4 st/s
+step   134000 | loss 1.9075 | eps 1.000 | buf  129709 | score50   0.70 (max 2) |  555.6 st/s
+step   136000 | loss 1.8909 | eps 1.000 | buf  131692 | score50   0.78 (max 3) |  555.6 st/s
+step   138000 | loss 2.1839 | eps 1.000 | buf  133672 | score50   0.92 (max 3) |  556.0 st/s
+step   140000 | loss 2.1437 | eps 1.000 | buf  135654 | score50   0.98 (max 3) |  556.2 st/s
+step   142000 | loss 1.8945 | eps 1.000 | buf  137632 | score50   1.00 (max 3) |  556.6 st/s
+step   144000 | loss 1.9235 | eps 1.000 | buf  139612 | score50   1.02 (max 3) |  556.7 st/s
+step   146000 | loss 2.1187 | eps 1.000 | buf  141596 | score50   0.96 (max 3) |  556.8 st/s
+step   148000 | loss 1.8132 | eps 1.000 | buf  143578 | score50   1.02 (max 3) |  557.0 st/s
+step   150000 | loss 2.1722 | eps 1.000 | buf  145560 | score50   1.08 (max 3) |  557.7 st/s
+  >> EVAL @ 150000: mean=1.75 max=4 (best_mean=1.75)
+step   152000 | loss 1.9544 | eps 1.000 | buf  147546 | score50   1.16 (max 4) |  547.6 st/s
+step   154000 | loss 1.9154 | eps 1.000 | buf  149532 | score50   1.24 (max 4) |  547.7 st/s
+step   156000 | loss 2.1468 | eps 1.000 | buf  151508 | score50   1.36 (max 4) |  547.5 st/s
+step   158000 | loss 1.7754 | eps 1.000 | buf  153492 | score50   1.34 (max 4) |  547.0 st/s
+step   160000 | loss 1.6633 | eps 1.000 | buf  155472 | score50   1.34 (max 4) |  545.6 st/s
+step   162000 | loss 1.7081 | eps 1.000 | buf  157452 | score50   1.38 (max 5) |  544.7 st/s
+step   164000 | loss 1.8667 | eps 1.000 | buf  159432 | score50   1.24 (max 5) |  543.3 st/s
+step   166000 | loss 1.6519 | eps 1.000 | buf  161422 | score50   1.24 (max 5) |  542.7 st/s
+step   168000 | loss 1.8811 | eps 1.000 | buf  163408 | score50   1.46 (max 7) |  541.5 st/s
+step   170000 | loss 1.6929 | eps 1.000 | buf  165394 | score50   1.66 (max 7) |  540.7 st/s
+step   172000 | loss 2.0382 | eps 1.000 | buf  167376 | score50   1.70 (max 7) |  539.7 st/s
+step   174000 | loss 1.7033 | eps 1.000 | buf  169354 | score50   1.64 (max 7) |  538.9 st/s
+  >> EVAL @ 175000: mean=1.10 max=4 (best_mean=1.75)
+step   176000 | loss 1.5626 | eps 1.000 | buf  171340 | score50   1.70 (max 7) |  528.4 st/s
+step   178000 | loss 2.0225 | eps 1.000 | buf  173324 | score50   1.70 (max 7) |  527.4 st/s
+step   180000 | loss 1.7944 | eps 1.000 | buf  175310 | score50   1.66 (max 7) |  526.8 st/s
+step   182000 | loss 1.9844 | eps 1.000 | buf  177296 | score50   1.54 (max 5) |  526.0 st/s
+step   184000 | loss 2.0127 | eps 1.000 | buf  179282 | score50   1.64 (max 5) |  525.8 st/s
+step   186000 | loss 2.1037 | eps 1.000 | buf  181268 | score50   1.76 (max 6) |  525.0 st/s
+step   188000 | loss 1.6044 | eps 1.000 | buf  183254 | score50   1.90 (max 6) |  524.4 st/s
+step   190000 | loss 1.6035 | eps 1.000 | buf  185234 | score50   1.92 (max 9) |  524.0 st/s
+step   192000 | loss 1.9680 | eps 1.000 | buf  187218 | score50   1.98 (max 9) |  524.3 st/s
+step   194000 | loss 1.9753 | eps 1.000 | buf  189200 | score50   1.80 (max 9) |  524.6 st/s
+step   196000 | loss 1.6884 | eps 1.000 | buf  191182 | score50   1.64 (max 9) |  524.9 st/s
+step   198000 | loss 1.6570 | eps 1.000 | buf  193166 | score50   1.54 (max 9) |  525.3 st/s
+step   200000 | loss 1.9135 | eps 1.000 | buf  195146 | score50   1.28 (max 6) |  525.6 st/s
+  >> EVAL @ 200000: mean=1.10 max=4 (best_mean=1.75)
+step   202000 | loss 1.6000 | eps 1.000 | buf  197128 | score50   1.26 (max 6) |  520.5 st/s
+step   204000 | loss 1.9288 | eps 1.000 | buf  199114 | score50   1.24 (max 6) |  520.9 st/s
+step   206000 | loss 1.5420 | eps 1.000 | buf  201098 | score50   1.58 (max 7) |  521.0 st/s
+step   208000 | loss 1.8647 | eps 1.000 | buf  203082 | score50   1.50 (max 7) |  521.2 st/s
+step   210000 | loss 1.8695 | eps 1.000 | buf  205068 | score50   1.54 (max 7) |  521.6 st/s
+step   212000 | loss 1.9006 | eps 1.000 | buf  207048 | score50   1.72 (max 8) |  522.2 st/s
+step   214000 | loss 1.9042 | eps 1.000 | buf  209032 | score50   1.66 (max 8) |  522.9 st/s
+step   216000 | loss 1.4854 | eps 1.000 | buf  211016 | score50   1.80 (max 8) |  523.5 st/s
+step   218000 | loss 1.9975 | eps 1.000 | buf  213002 | score50   1.72 (max 8) |  524.1 st/s
+step   220000 | loss 1.8847 | eps 1.000 | buf  214990 | score50   1.70 (max 8) |  524.6 st/s
+step   222000 | loss 1.8730 | eps 1.000 | buf  216974 | score50   1.82 (max 8) |  525.1 st/s
+step   224000 | loss 1.5125 | eps 1.000 | buf  218964 | score50   2.04 (max 8) |  525.6 st/s
+  >> EVAL @ 225000: mean=2.25 max=4 (best_mean=2.25)
+step   226000 | loss 1.4738 | eps 1.000 | buf  220950 | score50   1.98 (max 6) |  518.9 st/s
+step   228000 | loss 1.8980 | eps 1.000 | buf  222938 | score50   2.14 (max 6) |  519.2 st/s
+step   230000 | loss 1.4971 | eps 1.000 | buf  224922 | score50   2.34 (max 10) |  519.7 st/s
+step   232000 | loss 1.3538 | eps 1.000 | buf  226906 | score50   2.36 (max 10) |  519.8 st/s
+step   234000 | loss 1.8616 | eps 1.000 | buf  228890 | score50   2.14 (max 10) |  520.1 st/s
+step   236000 | loss 1.3578 | eps 1.000 | buf  230876 | score50   2.16 (max 10) |  520.3 st/s
+step   238000 | loss 1.8328 | eps 1.000 | buf  232856 | score50   1.98 (max 10) |  520.4 st/s
+step   240000 | loss 1.3755 | eps 1.000 | buf  234840 | score50   1.80 (max 10) |  520.6 st/s
+step   242000 | loss 1.4963 | eps 1.000 | buf  236828 | score50   1.60 (max 6) |  520.9 st/s
+step   244000 | loss 1.9065 | eps 1.000 | buf  238812 | score50   1.66 (max 6) |  521.5 st/s
+step   246000 | loss 1.8859 | eps 1.000 | buf  240802 | score50   1.66 (max 6) |  522.2 st/s
+step   248000 | loss 1.6721 | eps 1.000 | buf  242794 | score50   1.88 (max 6) |  522.8 st/s
+step   250000 | loss 1.5145 | eps 1.000 | buf  244786 | score50   2.26 (max 8) |  523.3 st/s
+  >> EVAL @ 250000: mean=3.05 max=15 (best_mean=3.05)
+step   252000 | loss 1.7528 | eps 1.000 | buf  246772 | score50   2.30 (max 8) |  516.0 st/s
+step   254000 | loss 1.3927 | eps 1.000 | buf  248760 | score50   2.56 (max 10) |  516.3 st/s
+step   256000 | loss 1.3735 | eps 1.000 | buf  250746 | score50   2.72 (max 10) |  516.5 st/s
+step   258000 | loss 1.8349 | eps 1.000 | buf  252736 | score50   2.86 (max 10) |  516.9 st/s
+step   260000 | loss 1.8450 | eps 1.000 | buf  254724 | score50   3.04 (max 10) |  517.1 st/s
+step   262000 | loss 1.5136 | eps 1.000 | buf  256716 | score50   3.04 (max 10) |  517.4 st/s
+step   264000 | loss 1.8925 | eps 1.000 | buf  258706 | score50   3.18 (max 10) |  517.5 st/s
+step   266000 | loss 1.7854 | eps 1.000 | buf  260692 | score50   3.32 (max 13) |  517.7 st/s
+step   268000 | loss 1.8896 | eps 1.000 | buf  262144 | score50   3.34 (max 13) |  518.0 st/s
+step   270000 | loss 1.8395 | eps 1.000 | buf  262144 | score50   3.42 (max 13) |  518.2 st/s
+step   272000 | loss 1.5061 | eps 1.000 | buf  262144 | score50   3.74 (max 13) |  518.5 st/s
+step   274000 | loss 1.7210 | eps 1.000 | buf  262144 | score50   3.76 (max 13) |  519.0 st/s
+  >> EVAL @ 275000: mean=5.40 max=18 (best_mean=5.40)
+step   276000 | loss 1.7437 | eps 1.000 | buf  262144 | score50   3.76 (max 13) |  509.7 st/s
+step   278000 | loss 1.7925 | eps 1.000 | buf  262144 | score50   4.32 (max 19) |  510.0 st/s
+step   280000 | loss 1.4048 | eps 1.000 | buf  262144 | score50   4.42 (max 19) |  510.5 st/s
+step   282000 | loss 1.7722 | eps 1.000 | buf  262144 | score50   4.42 (max 19) |  511.1 st/s
+step   284000 | loss 1.3598 | eps 1.000 | buf  262144 | score50   4.52 (max 19) |  511.7 st/s
+step   286000 | loss 2.0417 | eps 1.000 | buf  262144 | score50   4.78 (max 19) |  512.2 st/s
+step   288000 | loss 1.3137 | eps 1.000 | buf  262144 | score50   4.92 (max 19) |  512.4 st/s
+step   290000 | loss 1.9541 | eps 1.000 | buf  262144 | score50   5.10 (max 19) |  512.9 st/s
+step   292000 | loss 1.2959 | eps 1.000 | buf  262144 | score50   5.02 (max 19) |  513.4 st/s
+step   294000 | loss 1.8111 | eps 1.000 | buf  262144 | score50   5.50 (max 19) |  514.0 st/s
+step   296000 | loss 1.9315 | eps 1.000 | buf  262144 | score50   5.40 (max 19) |  514.2 st/s
+step   298000 | loss 1.8979 | eps 1.000 | buf  262144 | score50   5.54 (max 19) |  515.0 st/s
+step   300000 | loss 1.9369 | eps 1.000 | buf  262144 | score50   5.82 (max 19) |  515.8 st/s
+  >> EVAL @ 300000: mean=4.25 max=15 (best_mean=5.40)
+[train] DONE. final eval mean=4.25 max=15 best_mean=5.40
+[train] final checkpoint -> checkpoints\rainbow_fix\ckpt_final.pt

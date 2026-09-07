@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+
+# Local conda environment (lives in ./env) — never commit
+env/
+.conda/
+
+# Model checkpoints & logs (large binaries; back them up separately)
+checkpoints/
+logs/
+*.ckpt
+*.pt
+*.pth
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+
+# Agent workspace (local notes/memory — never part of the code history)
+.workbuddy/
