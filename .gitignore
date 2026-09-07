@@ -8,10 +8,14 @@ env/
 .conda/
 
 # Model checkpoints & logs (large binaries; back them up separately)
+# Exception: ship the BEST trained model so anyone can play immediately after
+# cloning — no training required.
 checkpoints/
+!checkpoints/
+checkpoints/*
+!checkpoints/best.pt
 logs/
 *.ckpt
-*.pt
 *.pth
 
 # OS / editor
