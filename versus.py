@@ -92,9 +92,12 @@ def main():
                 renderer.close(); return
             if event.type == pygame.KEYDOWN and event.key in (pygame.K_ESCAPE,):
                 renderer.close(); return
-            if event.type in (pygame.KEYDOWN, pygame.MOUSEBUTTONDOWN):
-                if event.key in (pygame.K_SPACE, pygame.K_UP) or event.type == pygame.MOUSEBUTTONDOWN:
-                    flap_pending = True
+            # NOTE: check MOUSEBUTTONDOWN separately — mouse events have no
+            # `.key` attribute, so reading event.key on them raises.
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                flap_pending = True
+            elif event.type == pygame.KEYDOWN and event.key in (pygame.K_SPACE, pygame.K_UP):
+                flap_pending = True
 
         human_a = 1 if flap_pending else 0
         flap_pending = False
