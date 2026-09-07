@@ -83,13 +83,11 @@ class SideBySideRenderer:
     shared world, so the two sides are always in lock-step and directly
     comparable.
 
-    Each panel highlights its own bird; the opponent is drawn as a grey
-    "ghost" so you can still see where the other side is. A bird that has
-    already failed is drawn dark grey (its corpse stays on screen, frozen,
-    until both sides are out).
+    Each panel shows only its OWN bird (no ghost of the opponent), so the view
+    stays clean. A bird that has already failed is drawn dark grey (its corpse
+    stays on screen, frozen, until both sides are out).
     """
 
-    GHOST = (150, 150, 150)
     DEAD = (110, 110, 110)
 
     def __init__(self, env_cfg: EnvConfig, gap: int = 24, hud_h: int = 52,
@@ -133,13 +131,10 @@ class SideBySideRenderer:
         pygame.draw.rect(self.screen, (222, 184, 135),
                          (ox, self.ground_y, self.W, self.H - self.ground_y))
 
-        for i in range(sim.n):
-            by = int(sim.bird_y[i])
-            if i == idx:                       # this panel's own bird
-                col = colors[i] if alive[i] else self.DEAD
-            else:                              # the opponent -> ghost
-                col = self.GHOST
-            pygame.draw.circle(self.screen, col, (self.bird_x + ox, by), self.bird_radius)
+        # Only this panel's own bird is drawn — no ghost of the opponent.
+        by = int(sim.bird_y[idx])
+        col = colors[idx] if alive[idx] else self.DEAD
+        pygame.draw.circle(self.screen, col, (self.bird_x + ox, by), self.bird_radius)
         self.screen.set_clip(None)
 
     def draw(self, sim: FlappySim, colors, labels, alive, scores, status,

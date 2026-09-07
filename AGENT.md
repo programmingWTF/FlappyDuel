@@ -86,10 +86,11 @@ D:\Code\DQN\
   click presses flap. `R` restarts, `ESC` quits.
 - **CPU by default** (`--device cpu`) so the game runs on any machine without a
   GPU; only `pygame` + `torch` are needed.
-- Each panel brightens its own bird and draws the opponent as a grey ghost. A
-  crashed bird turns dark grey, is labelled `OUT`, and its corpse stays frozen
-  on screen until **both** sides are out — intentional, and the usual source of
-  "the AI clipped a pipe and survived!" confusion.
+- Each panel shows **only its own bird** — the opponent's grey ghost was
+  removed at the user's request, so the view stays clean. A crashed bird turns
+  dark grey, is labelled `OUT`, and its corpse stays frozen on screen until
+  **both** sides are out — intentional, and the usual source of "the AI
+  clipped a pipe and survived!" confusion.
 - `R` rebuilds the shared pipe field (`FlappySim.reset_all`), so a restart
   never drops the bird into the previous round's pipes.
 

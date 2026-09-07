@@ -106,9 +106,9 @@ Two **synchronized** views sit side by side, driven by the same shared world:
 - The round **starts paused** — press **UP** once to begin.
 - Once running: **UP / SPACE / click** to flap, **ESC** to quit, **R** to
   restart after both sides are out.
-- Each panel highlights its own bird; the opponent appears as a grey ghost, so
-  you can see who is ahead at a glance. A bird that has crashed turns dark grey
-  and is labelled `OUT`, but its corpse stays on screen until both are out.
+- Each panel shows **only its own bird** (no ghost of the other side), so the
+  view stays clean. A bird that has crashed turns dark grey and is labelled
+  `OUT`, but its corpse stays on screen until both are out.
 - When one side crashes the other keeps flying until both have failed, then the
   scores are compared.
 
