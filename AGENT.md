@@ -38,14 +38,17 @@ D:\Code\DQN\
 ├── flappyrl/           # the package
 │   ├── config.py       # EnvConfig / AgentConfig / TrainConfig + presets
 │   ├── sim.py          # vectorized HEADLESS Flappy sim (numpy)
-│   ├── render.py       # optional pygame renderer (eval + versus)
+│   ├── render.py       # pygame renderers: single-panel (eval) + side-by-side (versus)
 │   ├── networks.py     # Dueling / Noisy / Distributional (C51) nets
 │   ├── buffer.py       # uniform + prioritized (SumTree) replay buffers
 │   ├── agent.py        # RainbowDQN agent (all components wired)
 │   └── logger.py       # CSV (+ optional TensorBoard) logger
 ├── train.py            # training entry point
 ├── evaluate.py         # greedy eval of a checkpoint (+ optional render)
-├── versus.py           # HUMAN vs AI in a shared scene
+├── versus.py           # HUMAN vs AI — two synchronized panels (CPU, paused start)
+├── versus_smoke.py     # headless check that the versus pipeline works
+├── test_collision_symmetry.py  # proves human and AI are judged identically
+├── eval_all.py         # compare every final checkpoint side by side
 ├── archive/            # ORIGINAL single-file prototype (reference only)
 ├── checkpoints/        # <tag>/ckpt_step_*.pt  (gitignored)
 └── logs/               # <tag>/*.csv (+ tb/)   (gitignored)
@@ -68,9 +71,27 @@ D:\Code\DQN\
 :: Headless verification that the shared-world versus pipeline works
 .\env\python.exe versus_smoke.py
 
-:: Human vs AI (you = RED, AI = GOLD; SPACE/UP/click to flap)
+:: Human vs AI — two synchronized panels (LEFT = you, RIGHT = AI); starts PAUSED
 .\env\python.exe versus.py --model-path checkpoints/best.pt
 ```
+
+### Versus mode (human vs AI) — how it works
+
+- **Two synchronized panels in one window.** pygame allows only a *single* OS
+  window, so "two windows" is implemented as one window split into two aligned
+  panels (`SideBySideRenderer` in `flappyrl/render.py`; 600×564 = two 288-wide
+  panels). Both panels render the **same** shared world, so the sides are
+  always in lock-step and directly comparable.
+- **Starts PAUSED.** The first UP press starts the round; later UP / SPACE /
+  click presses flap. `R` restarts, `ESC` quits.
+- **CPU by default** (`--device cpu`) so the game runs on any machine without a
+  GPU; only `pygame` + `torch` are needed.
+- Each panel brightens its own bird and draws the opponent as a grey ghost. A
+  crashed bird turns dark grey, is labelled `OUT`, and its corpse stays frozen
+  on screen until **both** sides are out — intentional, and the usual source of
+  "the AI clipped a pipe and survived!" confusion.
+- `R` rebuilds the shared pipe field (`FlappySim.reset_all`), so a restart
+  never drops the bird into the previous round's pipes.
 
 ## 3. Algorithm design (current)
 
