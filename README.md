@@ -1,3 +1,5 @@
+> **English** | [简体中文](./README.zh-CN.md)
+
 # FlappyDuel
 
 **Flappy Bird, but you play against the AI — side by side, in the same world.**

@@ -1,3 +1,5 @@
+> **English** | [简体中文](./AGENT.zh-CN.md)
+
 # AGENT.md — FlappyDuel (Flappy Bird Deep-RL) — living handoff document
 
 > **GitHub:** https://github.com/programmingWTF/FlappyDuel (public, default
