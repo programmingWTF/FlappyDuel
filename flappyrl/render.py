@@ -110,6 +110,9 @@ class SideBySideRenderer:
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont("arial", 18)
         self.big = pygame.font.SysFont("arial", 26, bold=True)
+        # Clickable "RESTART" button, drawn in the bottom HUD bar. Kept as an
+        # attribute so versus.py can hit-test mouse clicks against it.
+        self.restart_rect = None
 
     def _origin(self, idx: int) -> int:
         return idx * (self.W + self.gap)
@@ -149,8 +152,23 @@ class SideBySideRenderer:
 
         pygame.draw.rect(self.screen, (30, 30, 30),
                          (0, self.H, self.win_w, self.hud_h))
+
+        # Clickable restart button (right side of the HUD bar).
+        bw, bh = 132, 30
+        self.restart_rect = pygame.Rect(
+            self.win_w - bw - 10, self.H + (self.hud_h - bh) // 2, bw, bh)
+
+        # Clip the status text so it can never run under the button.
+        self.screen.set_clip(pygame.Rect(0, self.H, self.restart_rect.left - 8,
+                                         self.hud_h))
         t = self.font.render(status, True, (255, 255, 255))
         self.screen.blit(t, (10, self.H + 16))
+        self.screen.set_clip(None)
+
+        pygame.draw.rect(self.screen, (70, 130, 200), self.restart_rect,
+                         border_radius=6)
+        bt = self.font.render("RESTART (R)", True, (255, 255, 255))
+        self.screen.blit(bt, bt.get_rect(center=self.restart_rect.center))
 
         if banner:
             t = self.big.render(banner, True, (0, 0, 0))

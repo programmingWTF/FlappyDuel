@@ -83,7 +83,12 @@ D:\Code\DQN\
   panels). Both panels render the **same** shared world, so the sides are
   always in lock-step and directly comparable.
 - **Starts PAUSED.** The first UP press starts the round; later UP / SPACE /
-  click presses flap. `R` restarts, `ESC` quits.
+  click presses flap. `ESC` quits.
+- **Restart:** `R` or the on-screen blue RESTART button (bottom-right of the
+  HUD bar) works at any time; once a round is over, UP/SPACE also start a new
+  one. A restart rebuilds the shared pipe field and returns to the paused
+  state. (The button is `SideBySideRenderer.restart_rect`; versus.py hit-tests
+  mouse clicks against it.)
 - **CPU by default** (`--device cpu`) so the game runs on any machine without a
   GPU; only `pygame` + `torch` are needed.
 - Each panel shows **only its own bird** — the opponent's grey ghost was

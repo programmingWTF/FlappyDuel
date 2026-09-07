@@ -104,8 +104,11 @@ Two **synchronized** views sit side by side, driven by the same shared world:
 ```
 
 - The round **starts paused** — press **UP** once to begin.
-- Once running: **UP / SPACE / click** to flap, **ESC** to quit, **R** to
-  restart after both sides are out.
+- Once running: **UP / SPACE / click** to flap, **ESC** to quit.
+- **Restart at any time**: press **R**, or click the blue **RESTART** button in
+  the bottom bar. Once both sides are out, **UP** or **SPACE** also start a new
+  round. A restart rebuilds the pipe field and returns to the paused state, so
+  you have a moment to get ready.
 - Each panel shows **only its own bird** (no ghost of the other side), so the
   view stays clean. A bird that has crashed turns dark grey and is labelled
   `OUT`, but its corpse stays on screen until both are out.

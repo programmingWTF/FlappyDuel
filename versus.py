@@ -10,7 +10,8 @@ Controls
 --------
 - UP arrow            : START the round (it begins PAUSED), then flap
 - SPACE / UP / click  : flap
-- R                   : restart after both sides are out
+- R / RESTART button  : restart at any time (UP or SPACE also start a new
+                        round once the current one is over)
 - ESC / close window  : quit
 
 Runs on the **CPU by default**, so anyone can play it without a GPU
@@ -120,7 +121,8 @@ def main():
     print("\n=== Human vs AI (side by side) ===")
     print("LEFT = you (red), RIGHT = AI (gold).")
     print("The round starts PAUSED - press UP to begin.")
-    print("Then UP / SPACE / click to flap.  R = restart, ESC = quit.\n")
+    print("Then UP / SPACE / click to flap; R (or the RESTART button) restarts.")
+    print("Once both sides are out, R or UP starts a new round.  ESC = quit.\n")
 
     while True:
         # ------------------------------------------------------------ input
@@ -134,14 +136,17 @@ def main():
                     new_round()
                     continue
                 if event.key in (pygame.K_UP, pygame.K_SPACE):
-                    # First press starts the round; later presses flap.
-                    if paused:
-                        paused = False
+                    if finished:
+                        new_round()          # after a round: play again
+                    elif paused:
+                        paused = False       # first press starts the round
                     else:
-                        flap_pending = True
+                        flap_pending = True  # later presses flap
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 # NOTE: mouse events have no `.key` attribute - never read it here.
-                if paused:
+                if renderer.restart_rect and renderer.restart_rect.collidepoint(event.pos):
+                    new_round()              # clicked the on-screen RESTART button
+                elif paused:
                     paused = False
                 else:
                     flap_pending = True
@@ -182,15 +187,15 @@ def main():
         colors = [LIVE[i] if alive[i] else DEAD for i in range(2)]
         if finished:
             banner = result
-            status = f"{result}      (R = restart, ESC = quit)"
+            status = f"{result}        R or UP = play again    ESC = quit"
         elif paused:
             banner = "PAUSED - press UP to start"
-            status = "PAUSED - press UP to start      (UP/SPACE/click = flap, ESC = quit)"
+            status = "PAUSED - press UP to start        UP/SPACE/click = flap    R = restart    ESC = quit"
         else:
             banner = None
             status = (f"YOU {scores[0]}{'  OUT' if not alive[0] else ''}   |   "
                       f"AI {scores[1]}{'  OUT' if not alive[1] else ''}"
-                      f"        UP/SPACE/click = flap, ESC = quit")
+                      f"        UP/SPACE/click = flap    R = restart    ESC = quit")
 
         renderer.draw(sim, colors=colors, labels=NAMES, alive=alive,
                       scores=scores, status=status, banner=banner)
