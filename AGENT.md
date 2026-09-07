@@ -1,4 +1,7 @@
-# AGENT.md — Flappy Bird Deep-RL Project (living handoff document)
+# AGENT.md — FlappyDuel (Flappy Bird Deep-RL) — living handoff document
+
+> **GitHub:** https://github.com/programmingWTF/FlappyDuel (public, default
+> branch `master`). The best model ships in `checkpoints/best.pt`.
 
 > **This file is for any AI agent (or human) that picks up this project later.**
 > It records the *current state*, *what works*, *what is broken*, and the
